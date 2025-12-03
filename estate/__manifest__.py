@@ -1,7 +1,7 @@
 {
     'name': 'Estate',
     'summary': 'Real estate tutorial module',
-    'version': '1.1.0',
+    'version': '1.2.0',
     'author': 'Sebastian',
     'license': 'LGPL-3',
     'category': 'Tutorial',
@@ -11,6 +11,8 @@
         'views/estate_property_views.xml',
         'views/estate_property_type_views.xml',
         'views/estate_menus.xml',
+        'views/estate_property_tag_views.xml',
+        'views/estate_property_offer_views.xml',
     ],
     'installable': True,
     'application': True,
