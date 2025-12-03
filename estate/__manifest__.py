@@ -1,7 +1,7 @@
 {
     'name': 'Estate',
     'summary': 'Real estate tutorial module',
-    'version': '1.0.0',
+    'version': '1.1.0',
     'author': 'Sebastian',
     'license': 'LGPL-3',
     'category': 'Tutorial',
