@@ -47,6 +47,26 @@ class EstateProperty(models.Model):
         string="Garden Orientation",
     )
 
+        # Many2one: Property Type
+    property_type_id = fields.Many2one(
+        "estate.property.type",
+        string="Property Type",
+    )
+
+    # Many2one: Käufer (Kunde)
+    buyer_id = fields.Many2one(
+        "res.partner",
+        string="Buyer",
+        copy=False,
+    )
+
+    # Many2one: Verkäufer / Makler (Odoo User)
+    salesperson_id = fields.Many2one(
+        "res.users",
+        string="Salesperson",
+        default=lambda self: self.env.user,
+    )
+
     # Reserved field: state
     state = fields.Selection(
         [

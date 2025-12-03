@@ -7,9 +7,10 @@
     'category': 'Tutorial',
     'depends': ['base'],
     'data': [
-        'security/ir.model.access.csv',      # Security
-        'views/estate_property_views.xml',   # Action
-        'views/estate_menus.xml',            # Menüs
+        'security/ir.model.access.csv',
+        'views/estate_property_views.xml',
+        'views/estate_property_type_views.xml',
+        'views/estate_menus.xml',
     ],
     'installable': True,
     'application': True,
