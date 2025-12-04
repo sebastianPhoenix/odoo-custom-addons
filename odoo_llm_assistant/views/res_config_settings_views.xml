@@ -1,0 +1,69 @@
+<odoo>
+    <!-- Einstellungen -->
+    <record id="view_llm_assistant_res_config_settings" model="ir.ui.view">
+        <field name="name">llm.assistant.res.config.settings</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.view_res_config_settings"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='settings']" position="inside">
+                <div class="app_settings_block" data-string="LLM Assistant" string="LLM Assistant">
+                    <h2>LLM Assistant</h2>
+                    <group>
+                        <field name="llm_base_url"/>
+                        <field name="llm_api_key" password="1"/>
+                        <field name="llm_model_id"/>
+                    </group>
+                    <group>
+                        <button name="action_fetch_llm_models"
+                                type="object"
+                                string="Verfügbare Modelle laden"
+                                class="btn-primary"/>
+                        <field name="llm_available_models" nolabel="1" readonly="1" style="height: 200px;"/>
+                    </group>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- OWL/QWeb Template für das Chat-Widget -->
+    <template id="llm_chat_widget_template" name="LLM Chat Widget">
+        <t t-name="odoo_llm_assistant.LlmChatWidget" owl="1">
+            <div class="o_llm_chat_systray">
+                <!-- Icon in der Topbar -->
+                <div t-on-click="toggle" class="o_llm_chat_icon">
+                    💬
+                </div>
+
+                <!-- Chat-Panel -->
+                <t t-if="state.open">
+                    <div class="o_llm_chat_panel">
+                        <div class="o_llm_chat_messages">
+                            <t t-foreach="state.messages" t-as="msg" t-foreach-index="i" t-key="i">
+                                <div t-att-class="msg.from === 'user' ? 'o_llm_msg o_llm_msg_user' : 'o_llm_msg o_llm_msg_bot'">
+                                    <t t-esc="msg.text"/>
+                                </div>
+                            </t>
+                        </div>
+                        <form t-on-submit="sendMessage" class="o_llm_chat_input">
+                            <input type="text"
+                                   t-model="state.input"
+                                   placeholder="Frage eingeben..."
+                                   class="o_input"/>
+                            <button type="submit" class="btn btn-primary">Senden</button>
+                        </form>
+                        <!-- Debug-Bereich -->
+                        <details class="o_llm_debug">
+                            <summary>Debug: Request/Response</summary>
+                            <pre t-if="state.lastRawRequest">
+                                <t t-esc="state.lastRawRequest"/>
+                            </pre>
+                            <pre t-if="state.lastRawResponse">
+                                <t t-esc="state.lastRawResponse"/>
+                            </pre>
+                        </details>
+                    </div>
+                </t>
+            </div>
+        </t>
+    </template>
+</odoo>
