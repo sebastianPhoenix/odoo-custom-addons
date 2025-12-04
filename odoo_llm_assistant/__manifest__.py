@@ -6,6 +6,7 @@
     "summary": "Globaler Chat-Assistent mit LLM-Anbindung",
     "depends": ["web"],
     "data": [
+        "security/ir.model.access.csv",
         "views/res_config_settings_views.xml",
     ],
     #"assets": {
