@@ -33,6 +33,7 @@
         <field name="view_id" ref="view_llm_assistant_res_config_settings"/>
         <field name="target">new</field>
         <field name="context">{'module': 'odoo_llm_assistant'}</field>
+        <field name="groups_id" eval="[(4, ref('base.group_system'))]"/>
     </record>
 
     <!-- Menüeintrag unter Einstellungen -->
@@ -40,7 +41,8 @@
               name="LLM Assistant"
               parent="base.menu_config"
               action="action_llm_assistant_config"
-              sequence="100"/>
+              sequence="100"
+              groups="base.group_system"/>
 
     <!-- Chat-Widget-Template kann bleiben, das ist unabhängig von Settings -->
     <!-- ... -->
